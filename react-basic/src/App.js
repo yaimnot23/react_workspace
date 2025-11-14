@@ -86,6 +86,6 @@ nextId.current += 1;
       <h1>사용자 목록</h1>
       <UserList users={users}/>
     </div>
-)}
+)
 
 export default App;

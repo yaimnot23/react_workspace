@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.header{
+  background-color: #282c34;
+  min-height: 100vh;
+
+}
+
+.header>ul{
+  list-style: none;
+  height: 50px;
+  
+}
