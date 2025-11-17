@@ -1,0 +1,17 @@
+폴더 구조
+app : 최상위 디렉터리 어플의 모든 경로, 라우트 관리
+app/api : api 엔드포인트를 정의하는데 사용(DB연결)
+app/api/[경로폴더]/route.ts : 연결 파일
+    (ex) app/api/user/route.ts => /user로 데이터를 보낼 때
+
+app/page.tsx : APP.js 와 같은 메인페이지 ( /경로)
+app/layout.tsx : 최상위 레이아웃 결정 (모든 페이지 적용)
+app/type/type.ts : 타입스크립트에서 사용할 타입 정의
+app/lib 폴더 : DB연결설정, 서버설정 전반적인 설정값 저장
+
+- 정적라우팅 : 경로의 폴더명으로 연결
+app/[경로폴더]/page.tsx : 연결 페이지 컴포턴트
+    (ex) app/user/page.tsx => /user로 연결
+- 동적라우팅 : [id] 대괄호 표기법을 통해 동적 세크먼트 정의
+app/board/[id]/page.tsx => /board/1로 연결
+
