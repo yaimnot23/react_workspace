@@ -1,0 +1,53 @@
+next.js <-> db 연결
+- 설치 라이브러리
+npm i mysql2 => db
+npm i axios => 비동기  fetch 내장 함수를 사용하면 설치 안해도 됨.
+
+- db 구성 완료 => 파일 참조.
+
+1. 폴더 구성
+    components > layout > Header.tsx / Footer.tsx
+    components > board > boardList.tsx
+    data > data.ts (sample data)
+    type > boardType.ts (boardType 정의)
+    api > DB 연결 함수
+    board > 라우트 연결 page
+    lib > DB 설정구문
+
+    2. layout 구성하기 => layout.tsx => Header.tsx / Footer.tsx 삽입
+
+    3. data.ts sample data 넣기
+
+    4. boardType.ts 데이터 타입 선언
+
+    5., components > board > BoardList.tsx 생성
+        data.ts => BoardList 구성
+        table > title 부분에 링크 생성 => [id] => detail 라우트
+        table 하단에 home(/) add(/board/write) 버튼 생성 => board > write 라우트
+
+    6. board > [id] > page.tsx 라우트 생성(상세 페이지)
+        하단 버튼 생성
+        list => 목록 href="/board"
+        modify => 수정 href="/board/[id]/modify" (일단 href 로 연결만 해두고 버튼만 구현)
+        delete => 삭제 href="/board/[id]/delete" (삭제는 실제 기능은 하지 않고 버튼만 생성)
+
+        7. board > [id] > modify 생성 (게시글 수정(input만 변경))
+            page 생성 후 비동기로 DB 연결을 할 예정이라 따로 처리는 하지 않기
+            복사 후 input으로 변경만 함.
+            하단 버튼
+            reset => 수정 취소
+            modify => 수정 처리 즉 실제 처리가 아닌 모양만 잡기
+
+    8. board > write 생성 (게시글 등록)
+        modify 와 같이 모양만 잡아주고 DB로 연결할 형태로만 구현
+
+        - read, detail => 가져오는 get 부분은 화면에 표시만 해주면 됨
+        - create, update => 화면에서 객체를 생성해서 post => DB 전달
+        - rest API : 자원을 이름으로 구분해 해당 자원의 상태를 표현
+        -CRUD(create, read, update, delete)
+        -C : create => 데이터 생성 => post
+        -R : read => 데이터 읽기 => get
+        -U : update => 데이터 수정 => put
+        -D : delete => 데이터 삭제 => delete
+
+    일반적 : form 태그 안에 있는 애들을 보낸다

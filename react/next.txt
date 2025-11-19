@@ -15,3 +15,12 @@ app/[경로폴더]/page.tsx : 연결 페이지 컴포턴트
 - 동적라우팅 : [id] 대괄호 표기법을 통해 동적 세크먼트 정의
 app/board/[id]/page.tsx => /board/1로 연결
 
+------------------------------------------------------------
+
+next.js 서버 <-> mysql DB 연결
+
+npm i mysql2
+
+npx create-next-app@latest next-board
+cd next-board
+npm i mysql2
