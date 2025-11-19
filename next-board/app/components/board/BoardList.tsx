@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -12,13 +12,13 @@ export default function BoardList() {
   useEffect(() => {
     const fetchList = async () => {
       try {
-        // 우리가 만든 GET /api/board API를 호출
-        const res = await fetch('/api/board', {
-            cache: 'no-store' // 데이터가 계속 바뀌므로 캐시를 쓰지 않음
+        // 만든 GET /api/board API를 호출
+        const res = await fetch("/api/board", {
+          cache: "no-store", // 데이터가 계속 바뀌므로 캐시를 쓰지 않음
         });
-        
+
         if (!res.ok) {
-            throw new Error("데이터를 불러오는데 실패했습니다.");
+          throw new Error("데이터를 불러오는데 실패했습니다.");
         }
 
         const data = await res.json();
@@ -60,9 +60,12 @@ export default function BoardList() {
                 </td>
               </tr>
             ) : (
-              /* boardList 상태(DB 데이터)를 map으로 뿌려줌 */
+              /* boardList 상태(DB 데이터)를 map으로 연결결*/
               boardList.map((board) => (
-                <tr key={board.id} className="hover:bg-gray-50 transition-colors">
+                <tr
+                  key={board.id}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   <td className="border border-gray-300 px-4 py-2 text-center">
                     {board.id}
                   </td>
@@ -79,8 +82,8 @@ export default function BoardList() {
                   </td>
                   <td className="border border-gray-300 px-4 py-2 text-center">
                     {/* 날짜 형식이 문자열로 오므로 10자리만 자름 */}
-                    {board.reg_date && typeof board.reg_date === 'string' 
-                      ? board.reg_date.substring(0, 10) 
+                    {board.reg_date && typeof board.reg_date === "string"
+                      ? board.reg_date.substring(0, 10)
                       : board.reg_date}
                   </td>
                 </tr>
