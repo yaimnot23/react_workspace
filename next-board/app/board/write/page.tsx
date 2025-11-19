@@ -23,13 +23,14 @@ export default function BoardWrite() {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // ✅ 여기에 async를 붙여야 비동기 통신(fetch)이 가능합니다.
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // 유효성 검사 (하나씩 체크해서 구체적으로 알려주기)
+    // 유효성 검사
     if (!title) {
       alert("제목을 입력해주세요.");
-      return; // 함수 종료 (더 이상 진행 안 함)
+      return;
     }
     if (!writer) {
       alert("작성자를 입력해주세요.");
@@ -40,21 +41,38 @@ export default function BoardWrite() {
       return;
     }
 
-    // 실제 DB 전송 로직이 들어갈 자리
-    /*
-      const boardData = { ...form, reg_date: new Date() };
-      axios.post('/api/board', boardData)...
-    */
+    // ✅ 실제 DB 전송 로직 (fetch 사용)
+    try {
+      const res = await fetch('/api/board', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          title, 
+          writer, 
+          contents 
+        }),
+      });
 
-    alert(`[등록 처리 완료]\n제목: ${title}\n작성자: ${writer}\n내용: ${contents}`);
-    
-    router.push('/board');
+      if (res.ok) {
+        alert("게시글이 정상적으로 등록되었습니다.");
+        router.push('/board'); // 목록으로 이동
+        router.refresh();      // 데이터 새로고침
+      } else {
+        alert("등록에 실패했습니다.");
+      }
+
+    } catch (error) {
+      console.error("등록 중 오류 발생:", error);
+      alert("오류가 발생했습니다.");
+    }
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto mt-10 px-4">
       <h2 className="text-3xl font-bold border-b border-gray-300 pb-4 mb-6">
-        게시글 등록 (onSubmit 적용)
+        게시글 등록
       </h2>
 
       <form onSubmit={handleSubmit}>

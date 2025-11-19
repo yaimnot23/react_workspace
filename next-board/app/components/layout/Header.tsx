@@ -11,7 +11,8 @@ export default function Header() {
         <Link href="/board" className="hover:text-blue-600">
           Board
         </Link>
-        <Link href="" className="hover:text-blue-600">
+        {/* href="" 를 href="/board/write" 로 수정했습니다 */}
+        <Link href="/board/write" className="hover:text-blue-600">
           Write
         </Link>
       </nav>

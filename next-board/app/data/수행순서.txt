@@ -50,4 +50,25 @@ npm i axios => 비동기  fetch 내장 함수를 사용하면 설치 안해도 �
         -U : update => 데이터 수정 => put
         -D : delete => 데이터 삭제 => delete
 
-    일반적 : form 태그 안에 있는 애들을 보낸다
+--------------------------------------------------------------------------------
+DB 연결
+9. .env 작성 규칙 : 환경변수를 관리하는 파일
+ React 에서는 변수명 REACT_APP_으로 시작되어야 함
+
+Next.js 에서는 변수명 NEXT_PUBLIC_ 접두사가 필요
+변수명과 값 사이에는 공백 또는 따옴표가 존재해서는 안된다.
+변수명은 대문자로 작성하는 것이 관례례
+
+파일안 프로젝트 폴더에 작성 => .env.local
+
+10. lib > db.ts 파일 생성
+    DB 설정 사항 작성
+    => .env.local 파일을 자동으로 호출
+    => .env.local 파일을 숨김파일로 git에 올라가지 않고 파일을 참조해 사용
+    => api key, pw, 서버URL 등을 관리
+
+    - api > DB 연결 함수 폴더 구성
+    - api > board > route.ts => /api/board => GET(전체 조회), POST(생성)
+    - api > board > [id] > route.ts => /api/board/[id] => PUT(수정), GET(1개의 값 조회), DELETE(삭제)
+
+11. write 페이지에서 비동기 데이터 추가(POST)
